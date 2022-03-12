@@ -4,10 +4,12 @@ library(tidyverse)
 library(ggplot2)
 library(plotly)
 
-app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
+#app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
+app <- Dash$new(external_stylesheets = "https://codepen.io/chriddyp/pen/bWLwgP.css")
 
 # loading data
-data <- read_csv('data/survey.csv')
+#data <- read_csv('data/survey.csv')
+data <- readr::read_csv(here::here('data', 'survey.csv'))
 
 # Data wrangling
 data_employee_gender <- data %>%
