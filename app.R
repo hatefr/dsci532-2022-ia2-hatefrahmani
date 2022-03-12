@@ -10,10 +10,10 @@ app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 data <- read_csv('data/survey.csv')
 
 # Data wrangling
-data_employee_gender <- data |>
-  mutate(Gender = tolower(Gender)) |>
-  filter(Gender %in% c("male", "female")) |>
-  group_by(no_employees, Gender) |>
+data_employee_gender <- data %>%
+  mutate(Gender = tolower(Gender)) %>%
+  filter(Gender %in% c("male", "female")) %>%
+  group_by(no_employees, Gender) %>%
   count()
 
 data_employee_gender$pct <- data_employee_gender$n/nrow(data)*100
@@ -36,16 +36,16 @@ app$callback(
   function(selected_gender="All") {
     if (selected_gender == 'All'){
     plot_data <- data_employee_gender %>%
-    group_by(no_employees) |>
-      summarise(pct = sum(pct)) |>
+    group_by(no_employees) %>%
+      summarise(pct = sum(pct)) %>%
       mutate(Gender = 'All')
     }
     else if (selected_gender == "male") {
-      plot_data <- data_employee_gender |>
+      plot_data <- data_employee_gender %>%
         filter (Gender == 'male')
     }
     else {
-      plot_data <- data_employee_gender |>
+      plot_data <- data_employee_gender %>%
         filter (Gender == 'female')
     }
 
