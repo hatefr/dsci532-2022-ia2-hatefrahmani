@@ -6,7 +6,7 @@ library(plotly)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
-# load data
+# loading data
 data <- read_csv('data/survey.csv')
 
 # Data wrangling
